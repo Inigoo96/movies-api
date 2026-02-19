@@ -37,7 +37,6 @@ jobs:
      DB_PASS: postgres
      DB_NAME: movies
      DB_SSL: "false"
-     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 
    steps:
@@ -82,14 +81,9 @@ jobs:
 
 
      - name: SonarCloud Scan
-       if: ${{ env.SONAR_TOKEN != '' }}
        uses: SonarSource/sonarcloud-github-action@v2
        env:
-         SONAR_TOKEN: ${{ env.SONAR_TOKEN }}
-
-     - name: SonarCloud skipped (missing SONAR_TOKEN)
-       if: ${{ env.SONAR_TOKEN == '' }}
-       run: echo "SONAR_TOKEN no está configurado en GitHub Secrets. Se omite SonarCloud Scan."
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 
      - name: E2E / Contract tests
