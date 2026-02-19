@@ -3,6 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MoviesModule } from './movies/movies.module';
 
+const isTestEnv = process.env.NODE_ENV === 'test';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -17,7 +19,7 @@ import { MoviesModule } from './movies/movies.module';
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
       autoLoadEntities: true,
-      synchronize: false,
+      synchronize: isTestEnv,
     }),
 
     MoviesModule,
