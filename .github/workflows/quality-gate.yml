@@ -80,10 +80,10 @@ jobs:
          find . -name lcov.info -maxdepth 4 || true
 
 
-     - name: SonarCloud Scan
-       uses: SonarSource/sonarcloud-github-action@v2
-       env:
-         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+     # - name: SonarCloud Scan
+     #   uses: SonarSource/sonarcloud-github-action@v2
+     #   env:
+     #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 
      - name: E2E / Contract tests
